@@ -12,26 +12,30 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100vw;
 }
 
 form {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   width: 100%;
   /* border: 1px solid black; */
-  padding: 10px;
+  /* padding: 10px; */
   box-sizing: border-box;
   color: blue;
 }
 
 form input {
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0px;
   font-size: medium;
-  border: 2px solid blue;
-  border-radius: 5px;
+  border: 1px solid blue;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   outline: 0;
-  background-color: transparent;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
 }
 
 form button {
@@ -39,10 +43,12 @@ form button {
   color: white;
   font-weight: 700;
   border: 0;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0px;
   font-size: medium;
+  box-sizing: border-box;
 }
 
 .container {
@@ -50,9 +56,44 @@ form button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  width: 375px;
   padding: 10px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.5);
   font-weight: 600;
+}
+
+.detail {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.row1-col1 {
+  width: 50%;
+  text-align: center;
+}
+
+.row1-col1 img {
+  margin: 0;
+}
+
+.row1-col2 {
+  width: 50%;
+  text-align: center;
+}
+
+.row1-col2 h1 {
+  font-size: 72px;
+  text-align: center;
 }

@@ -91,10 +91,10 @@ return (
                 weather === "Fog" && dN === "n"? mistynight: ""
                 })`}}>
             
-            
             <div className="container">
-                <form onSubmit={(e) => searchCity(e)}>
+            
                 <h1>Weather App</h1>
+                <form onSubmit={(e) => searchCity(e)}>
                 <input type="text" autoFocus value={city} placeholder='Enter city name' onChange={(e)=>setCity(e.target.value)} />
                 <button>Search</button>
                 </form>
@@ -103,20 +103,25 @@ return (
                 <div className="detail">
                     
                     <h2>{weatherData && weatherData.name}, {weatherData && weatherData.sys && weatherData.sys.country}</h2>
+                    <div className="row1">
+                        <div className="row1-col1">
+                            <img src={`http://openweathermap.org/img/wn/${weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].icon}@2x.png`} />
+                            <p>{weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].main}</p>
+                            <small>({weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].description})</small>
+                            <p>Humidity: {weatherData && weatherData.main && weatherData.main.humidity}% </p>
+                        </div>
                     
-                    <img src={`http://openweathermap.org/img/wn/${weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].icon}@2x.png`} />
+                        <div className='row1-col2'>
+                            <h1>{Math.round(weatherData && weatherData.main && weatherData.main.temp)}°</h1>
+                            <p>Feels like {Math.round(weatherData && weatherData.main && weatherData.main.feels_like)}°</p>
+                            <p>Min. {Math.round(weatherData && weatherData.main && weatherData.main.temp_min)}°</p>
+                            <p>Max. {Math.round(weatherData && weatherData.main && weatherData.main.temp_max)}°</p>
+                        </div>
+                    </div>
+
                     
-                    <p>{weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].main} ({weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].description})</p>
-                    <h1>
-                        {Math.round(weatherData && weatherData.main && weatherData.main.temp)}°
-                    </h1>
                     
-                    <p>Feels like: {Math.round(weatherData && weatherData.main && weatherData.main.feels_like)}°C</p>
-                    <p>Humidity: {weatherData && weatherData.main && weatherData.main.humidity}% </p>
                     
-                    <p>Min: {Math.round(weatherData && weatherData.main && weatherData.main.temp_min)}°C</p>
-                    
-                    <p>Max: {Math.round(weatherData && weatherData.main && weatherData.main.temp_max)}°C</p>
                     
                     <small>Last updated:  {new Date(weatherData && weatherData.dt * 1000).toLocaleString("en-US", {day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "numeric", timeZoneName: "short"})}</small> 
                 </div>
