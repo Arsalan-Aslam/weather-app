@@ -29,11 +29,41 @@ const WeatherApp = () => {
     const [cityKey, setCityKey] = useState("Karachi");
     const [weather, setWeather] = useState("");
     const [dayNight, setDayNight] = useState("");
-    console.log("data:", weatherData);
-    console.log("weather:",weather);
+    const [currentLocation, setCurrentLocation] = useState({});
+
+    // console.log("data:", weatherData);
+    // console.log("weather:",weather);
 
     useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityKey}&appid=ebb78a588d64453f610528ff44c6f222&units=metric`)
+        function getLocation() {
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        // console.log(position);
+                        setCurrentLocation(position);
+                        // console.log(currentLocation)
+                        setCity("");
+                    },
+                    function (error) {
+                        console.log("error", error);
+                        setCityKey(city);
+                    }
+                );
+            } else { alert("Geolocation is not supported by this browser.")}
+        }
+        getLocation();
+    }, []);
+
+    
+        
+
+    useEffect(() => {
+        let searchQuery =
+          currentLocation && currentLocation.coords
+            ? `lat=${currentLocation.coords.latitude}&lon=${currentLocation.coords.longitude}`
+            : `q=${cityKey ? cityKey : city}`;
+    
+        fetch(`https://api.openweathermap.org/data/2.5/weather?${searchQuery}&appid=ebb78a588d64453f610528ff44c6f222&units=metric`)
         .then((res)=>res.json())
         .then((result)=>{
             setWeatherData(result) 
@@ -47,8 +77,9 @@ const WeatherApp = () => {
 
     const searchCity = (e) => {
         e.preventDefault();
+        setCurrentLocation({});
         setCityKey(city);
-        console.log(cityKey);
+        // console.log(cityKey);
         // setWeather(weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].main);
 
 
@@ -60,7 +91,7 @@ const WeatherApp = () => {
     
         const str = weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].icon;
         const dN = str&& str.slice(-1);
-        console.log(dN);
+        // console.log(dN);
     
 return (
         
@@ -93,7 +124,7 @@ return (
             
             <div className="container">
             
-                <h1>Weather App</h1>
+                <h1 id="heading">Weather App</h1>
                 <form onSubmit={(e) => searchCity(e)}>
                 <input type="text" autoFocus value={city} placeholder='Enter city name' onChange={(e)=>setCity(e.target.value)} />
                 <button>Search</button>

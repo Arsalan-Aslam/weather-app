@@ -13,7 +13,19 @@
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
+  /* animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; */
 }
+
+/* @keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+} */
 
 form {
   display: flex;
@@ -29,7 +41,7 @@ form input {
   padding: 10px;
   margin: 10px 0px;
   font-size: medium;
-  border: 1px solid blue;
+  border: 0;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   outline: 0;
@@ -62,6 +74,12 @@ form button {
   font-weight: 600;
 }
 
+#heading {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0px 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
 .detail {
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
