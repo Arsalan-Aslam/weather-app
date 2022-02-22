@@ -63,7 +63,7 @@ const WeatherApp = () => {
             ? `lat=${currentLocation.coords.latitude}&lon=${currentLocation.coords.longitude}`
             : `q=${cityKey ? cityKey : city}`;
     
-        fetch(`https://api.openweathermap.org/data/2.5/weather?${searchQuery}&appid=ebb78a588d64453f610528ff44c6f222&units=metric`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?${searchQuery}&appid={apiKey}=metric`)
         .then((res)=>res.json())
         .then((result)=>{
             setWeatherData(result) 
